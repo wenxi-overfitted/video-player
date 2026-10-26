@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>video viewer</title>
     <style>
-        body { margin: 0; background: black; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        body { margin: 0; background: black; display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; }
         video { width: 100%; max-width: 800px; }
+        
+        /* 悬浮按钮的样式 */
+        #unmute-btn {
+            position: absolute;
+            top: 30px; /* 距离顶部位置 */
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            z-index: 999;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
-    <video controls autoplay muted playsinline>
-        <source src="https://video-qrcode-1517572241.cos.ap-guangzhou.myqcloud.com/93b9d5a5a77e6fdb8167efeb9c032ae6.mp4" type="video/mp4">
+    <!-- 给视频加了一个 id="my-video" -->
+    <video id="my-video" controls autoplay muted playsinline>
+        <source src="你的腾讯云视频直链.mp4" type="video/mp4">
     </video>
+    
+    <!-- 自定义的取消静音按钮 -->
+    <button id="unmute-btn" onclick="enableSound()">🔈 点我开启声音</button>
+
+    <script>
+        function enableSound() {
+            var video = document.getElementById("my-video");
+            video.muted = false; // 取消静音
+            document.getElementById("unmute-btn").style.display = "none"; // 点完后隐藏该按钮
+        }
+    </script>
 </body>
 </html>
